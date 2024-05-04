@@ -38,7 +38,13 @@ app.post('/api/names', async (req, res) => {
     for (const element of receivedData) {
         const { header, option } = element;
         console.log(header,option);
-            if(previous===header || previous===''){
+            if(header==='SreenResolution'){
+                if(previous===''){
+                    query+=header+" "
+
+                }
+            }
+            else if(previous===header || previous===''){
             query += header + " LIKE '%" + option + "%' or ";
             previous=header;
             }
@@ -58,6 +64,14 @@ app.post('/api/names', async (req, res) => {
     res.send(result[0]);
     query = '';
 });
+var num=0;
+app.post('/api/laptopdata',async(req,res)=>{
+    console.log(req.body.param);
+    num=req.body.param;
+})
+app.get('/api/getdata',(req,res)=>{
+    res.send(result[0][num]);
+})
 app.listen(port,()=>{
     console.log(`Server running at http://localhost:${port}`);
 
