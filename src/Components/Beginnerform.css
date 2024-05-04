@@ -1,0 +1,22 @@
+
+.header {
+    padding: 10px;
+    margin-bottom: 2px;
+    background-color: #f0e9e9;
+    cursor: pointer;
+    border-radius: 5px;
+    color: black;
+    border: 2px solid red;
+}
+
+.options {
+      border: 2px solid black;
+    margin-top: 10px;
+    background-color: #f0e9e9;
+    border-radius: 5px;
+  }
+  
+  .checkbox {
+    max-width: 99%; 
+  }
+  

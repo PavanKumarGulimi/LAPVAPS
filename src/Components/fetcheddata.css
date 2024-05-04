@@ -1,0 +1,10 @@
+.laptop-list{
+    margin-top:10px;
+    margin-left: 10px;
+    overflow-y: auto; 
+    max-height: 600px;
+}
+.laptop{
+    background-color: black;
+    color: white;
+}
