@@ -4,7 +4,7 @@ function Person() {
   return (
     <div>
       <div className='header'>
-        <h1>SELECT ACCORDING TO YOUR KNOWLEDGE ON SPECIFICATIONS</h1>
+      <span style={{fontWeight:'bolder', color:'orange',fontSize:'30px',marginLeft:'5px'}}class="price-text">LAPVAPS</span>&nbsp;&nbsp;<span><img style={{height:'40px'}}src='https://www.svgrepo.com/show/2086/laptop.svg' alt='laptoppic'></img></span> <span style={{fontWeight:'bolder', color:'white',fontSize:'30px',marginLeft:'100px'}} class="price-value">{'SELECT ACCORDING TO YOUR KNOWLEDGE ON SPECIFICATIONS'}</span>
       </div>
     <div className="typesofpersoncontainer">
           <div className="typesofperson">
@@ -15,7 +15,7 @@ function Person() {
                       <img src='https://cdn-icons-png.flaticon.com/512/3048/3048127.png' alt='person1' style={{ width: '230px', height: 'auto' }}></img>
                     </div>
                     <div className='beginnerlink'>
-                        <h2>BEGINNER</h2>
+                        <h2>Beginner</h2>
                     </div>
                 </Link>
                 </button>
@@ -30,7 +30,7 @@ function Person() {
                         
                     </div>
                     <div>
-                        <h2>INTERMEDIATE</h2>
+                        <h2>Intermediate</h2>
                     </div>
                     </Link>
                 </button>
@@ -44,7 +44,7 @@ function Person() {
                         <img src='https://cdn-icons-png.flaticon.com/512/9308/9308310.png' alt='person3' style={{ width: '230px', height: 'auto' }}></img>
                     </div>
                     <div>
-                        <h2>PRO</h2>
+                        <h2>Pro</h2>
                     </div>
                     </Link>
                 </button>

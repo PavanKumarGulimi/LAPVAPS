@@ -12,7 +12,7 @@ function Options() {
     "GPU",
     "CPU",
     "Disk",
-    "ScreenResolution",
+    "price"
   ];
   const options = {
     LapName:["Asus","Dell","Acer","HP","Lenovo","MSI","Gigabyte","Apple","Microsoft","LG"],
@@ -60,8 +60,12 @@ function Options() {
       "4096 GB ",
       "8192 GB "
     ],
-    ScreenResolution: [
-      "HD","HD+","FHD","FHD+"
+    price:[
+      "$100 - $499",
+      "$500 - $999",
+      "$1000 - $1499",
+      "$1500 - $1999",
+      "$2000+"
     ]
   };
 
@@ -105,12 +109,13 @@ function Options() {
       console.error("Error sending data:", error);
     }
   }
-  const senddata = async(param) => {
+  const senddata = async(e,param) => {
     try {
       console.log(param);
       await axios.post("/api/laptopdata", {
       param,
       });
+      e.stopPropagation();
          }
     catch (error) {
       console.error("Error sending data:", error);
@@ -143,22 +148,10 @@ function Options() {
     <div className="laptop-list">
       {laptops.map(lapi => (
         <div key={lapi.id} className="laptop">
-          <button button onClick={() => senddata(lapi.id)} >
            <Link to={'/Laptopshow'} >
-          <img src={lapi.imgurl} alt={lapi.LapName} style={{height:'200px',width:'250px',marginLeft:'15px'}} />
+          <img src={lapi.imgurl} alt={lapi.LapName} style={{height:'200px',width:'250px',marginLeft:'15px'}} onClick={(e) => {senddata(e,lapi.id)}}/>
+           <h2 id='lapnamee'>{lapi.LapName}</h2>
           </Link>
-          </button >
-          {/* {/* <h2 style={{ marginLeft: '30%', marginTop: '10px' }}>{laptop.LapName}</h2> */}
-          {/* <p style={{ marginLeft: '30%', marginTop: '10px' }}>Price: {lapi.price}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Screen Size: {lapi.ScreenSize}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Screen Resolution: {lapi.ScreenResolution}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>CPU: {lapi.CPU}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>GPU: {lapi.GPU}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>RAM: {lapi.RAM}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Disk: {lapi.Disk}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Weight: {lapi.Weight}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>OS: {lapi.OS}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Battery Life: {lapi.Battery}</p>  */}
         </div>
       ))}
     </div>

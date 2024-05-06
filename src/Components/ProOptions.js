@@ -1,6 +1,7 @@
 import './Options.css'
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 function ProOptions() {
   const [selectedOptions, setSelectedOptions] = useState({});
   const [activeHeader, setActiveHeader] = useState(null);
@@ -14,11 +15,12 @@ function ProOptions() {
     "Disk",
     "ScreenResolution",
     "ScreenSize",
-    "Weight",
-    "Battery"
+    "weight",
+    "Battery",
+    "price"
   ];
   const options = {
-    LapName:["Asus","Dell","Acer","HP","Lenovo","MSI","Gigabyte","Apple","Microsoft","LG"],
+    LapName:["Asus","Dell","Acer","HP","Lenovo","MSI","Gigabyte","Apple","Microsoft","LG","zzzz"],
     GPU: [
       "INTEL ",
       "AMD ",
@@ -64,20 +66,37 @@ function ProOptions() {
       "8192 GB "
     ],
     ScreenResolution: [
-      "HD","HD+","FHD","FHD+"
+     " FHD","HD.","QHD","4K","HD+"
     ],
-    ScreenSize:[],
-    Weight:[],
+    ScreenSize:[
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17"
+    ],
+    weight:[
+      "less than 1",
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
     Battery:[
-        "Less than 5 hours",
-        "5 - 8 hours",
-        "8 - 11 hours",
-        "11 - 14 hours",
-        "14+ hours"
+      "1 hr", "2 hr", "3 hr","4 hr","5 hr", "6 hr", "7 hr", "8 hr", "9 hr", "10 hr", "11 hr", "12 hr", "13 hr", "14 hr"
+    ],
+    price:[
+      "$100 - $499",
+      "$500 - $999",
+      "$1000 - $1499",
+      "$1500 - $1999",
+      "$2000+"
     ]
   };
-
-  const handleHeaderClick = (header) => {
+ const handleHeaderClick = (header) => {
     setActiveHeader(header === activeHeader ? null : header);
   };
 
@@ -100,7 +119,7 @@ function ProOptions() {
         header: headers.find((header) => options[header].includes(checkbox)),
         option: checkbox,
       }));
-      const response = await axios.post("/api/Pro", {
+      const response = await axios.post("/api/pro", {
         selectedData,
       });
       const len=(response.data.length);
@@ -114,6 +133,18 @@ function ProOptions() {
       }
       console.log("Response from server:", response.data);
     } catch (error) {
+      console.error("Error sending data:", error);
+    }
+  }
+  const senddata = async(e,param) => {
+    try {
+      console.log(param);
+      await axios.post("/api/laptopdata", {
+      param,
+      });
+      e.stopPropagation();
+         }
+    catch (error) {
       console.error("Error sending data:", error);
     }
   };
@@ -142,20 +173,12 @@ function ProOptions() {
   </div>
   <div className="right-side">
     <div className="laptop-list">
-      {laptops.map(laptop => (
-        <div key={laptop.id} className="laptop">
-          <img src={laptop.imgurl} alt={laptop.LapName} style={{height:'200px',width:'250px',marginLeft:'15px'}} />
-          <h2 style={{ marginLeft: '30%', marginTop: '10px' }}>{laptop.LapName}</h2>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Price: {laptop.price}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Screen Size: {laptop.ScreenSize}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Screen Resolution: {laptop.ScreenResolution}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>CPU: {laptop.CPU}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>GPU: {laptop.GPU}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>RAM: {laptop.RAM}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Disk: {laptop.Disk}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Weight: {laptop.Weight}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>OS: {laptop.OS}</p>
-          <p style={{ marginLeft: '30%', marginTop: '10px' }}>Battery Life: {laptop.Battery}</p>
+      {laptops.map(lapi => (
+        <div key={lapi.id} className="laptop">
+           <Link to={'/Laptopshow'} >
+          <img src={lapi.imgurl} alt={lapi.LapName} style={{height:'200px',width:'250px',marginLeft:'15px'}} onClick={(e) => {senddata(e,lapi.id)}}/>
+           <h2 id='lapnamee'>{lapi.LapName}</h2>
+          </Link>
         </div>
       ))}
     </div>
@@ -165,5 +188,6 @@ function ProOptions() {
         </div>
   );
 }
+
 
 export default ProOptions;

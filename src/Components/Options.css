@@ -84,6 +84,12 @@ input[type="checkbox"]:checked::before {
     float: right; 
     padding: 20px; 
     box-sizing: border-box; 
+    text-decoration: none;
+    text-decoration-line: none;
+}
+.laptop a {
+  text-decoration: none; 
+  color:black; 
 }
 
 .laptop-list {
@@ -96,7 +102,8 @@ input[type="checkbox"]:checked::before {
   }
   
   .laptop {
-    border: 1px solid #ccc;
+    background-image: linear-gradient(135deg,orange,yellow);
+    border: 2px solid red;
     padding: 10px;
     border-radius: 8px;
   }
@@ -106,12 +113,10 @@ input[type="checkbox"]:checked::before {
     height: auto;
     border-radius: 8px;
   }
-  
-  .laptop h2 {
-    margin-top: 10px;
-  }
+.laptop #lapnamee{
+  text-align: center;
+}
   
   .laptop p {
     margin-top: 5px;
   }
-  
